@@ -1,24 +1,47 @@
 import React from "react";
-import "./Main.css";
 import axios from "axios";
+import "./Main.css";
 
-export default Main (){
+function Main() {
+  async function fetchData() {
+    try {
+      const response = await axios.get(
+        `https://opendata.paris.fr/api/v2/catalog/datasets/espaces_verts/records`
+      );
 
-  return(
-    
-    axios.get("https://rickandmortyapi.com/api/character").then((response) => {
-      console.log(response.data.results);
-
-      const divPlop = document.getElementById("plop");
-
-      response.data.results.forEach((character) => {
+      const divRoute = document.getElementById("root");
+      response.records.forEach((Vert) => {
         const title = document.createElement("h2");
-        title.innerText = character.name;
-
-        divPlop.appendChild(title);
+        title.innerText = Vert;
+        divRoute.appendChild(title);
       });
-    
+    } catch (err) {
+      console.log(err);
     }
-    ))
-    }
+  }
+  fetchData();
+}
 
+export default Main;
+
+// function Main() {
+//   async function fetchData() {
+//     try {
+//       const response = await axios.get(
+//         `https://rickandmortyapi.com/api/character`
+//       );
+
+//       const divRoute = document.getElementById("root");
+//       response.data.results.forEach((character) => {
+//         const title = document.createElement("h2");
+//         title.innerText = character.name;
+//         divRoute.appendChild(title);
+//       });
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   }
+//   fetchData();
+// }
+
+// export default Main;
