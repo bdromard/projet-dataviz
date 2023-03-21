@@ -3,23 +3,28 @@ import axios from "axios";
 import "./Main.css";
 
 function Main() {
+    React.useEffect(() => {
   async function fetchData() {
+
+
     try {
       const response = await axios.get(
         `https://opendata.paris.fr/api/v2/catalog/datasets/espaces_verts/records`
       );
 
       const divRoute = document.getElementById("root");
-      response.records.forEach((Vert) => {
+      response.data.records.forEach((Vert) => {
         const title = document.createElement("h2");
-        title.innerText = Vert;
+        title.innerText = Vert.record.fields.nom_ev;
         divRoute.appendChild(title);
+
       });
     } catch (err) {
       console.log(err);
     }
   }
   fetchData();
+  });
 }
 
 export default Main;
