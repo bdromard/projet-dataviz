@@ -9,7 +9,7 @@ function Main() {
 
     try {
       const response = await axios.get(
-        `https://opendata.paris.fr/api/v2/catalog/datasets/espaces_verts/records`
+        `https://opendata.paris.fr/api/v2/catalog/datasets/espaces_verts/records?limit=100`
       );
 
       const divRoute = document.getElementById("root");
