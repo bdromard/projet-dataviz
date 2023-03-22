@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import axios from "axios";
 import "./Main.css";
@@ -50,3 +51,23 @@ export default Main;
 // }
 
 // export default Main;
+=======
+import React, { useEffect } from "react";
+import "./Main.css";
+import axios from "axios";
+
+function Main (){
+
+
+  
+
+  return (
+    <div>
+    
+    </div>
+  )
+
+
+}; 
+ export default Main ; 
+>>>>>>> 52ae9a40 (creation header)
