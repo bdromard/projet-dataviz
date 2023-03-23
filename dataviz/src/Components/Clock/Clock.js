@@ -1,8 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import './Clock.css';
 
-const Clock = () => {
+const formatDate = () =>{
+    const months = {
+      0: 'Janvier',
+      1: 'Fevrier',
+      2: 'Mars',
+      3: 'Avril',
+      4: 'Mai',
+      5: 'Juin',
+      6: 'Juillet',
+      7: 'Aout',
+      8: 'Septembre',
+      9: 'Octobre',
+      10: 'Novembre',
+      11: 'Decembre',
+    }
+    const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi']
+    const d = new Date ()
+    const year = d.getFullYear()
+    const date = d.getDate()
+    const monthIndex = d.getMonth()
+    const monthName = months[d.getMonth()]
+    const dayName = days[d.getDay()] // Thu
+    const formatted = `${dayName}, ${date} ${monthName} ${year}`
+    return formatted.toString()
+  }
 
+const Clock = () => {
+    const jour =  new Date().toLocaleDateString();
     let time = new Date().toLocaleTimeString();
     const [currentTime, setCurrentTime] = useState(time);
     const updateTime = () => {
@@ -10,15 +36,17 @@ const Clock = () => {
         setCurrentTime(time) ;
     }
 
-useEffect(()=> {
-    setInterval(updateTime, 1000);
-})
-    
+    useEffect(()=> {
+        setInterval(updateTime, 1000);
+    })
+    formatDate()
     console.log(time);
     
     return (
         <div> 
             <h1>{currentTime}</h1>
+            <h2>On est le {formatDate()}</h2>
+
         </div>
     )
 }

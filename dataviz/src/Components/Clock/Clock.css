@@ -1,3 +1,5 @@
+
+
 .clock{
     width: 23vw;
     height: 23vh;
@@ -6,17 +8,23 @@
     
 }
 
-h1{
-    border: 2px solid red;
-    width: 250px;
-    margin: 40vh auto 0px auto;
-    border-radius: 15px;
-    padding: 10px 0;
-    background-color: aquamarine;
-    box-shadow: rgba(0, 0, 0, 0.352);
-}
 
 h1{
+    width:100% ;
+    margin-top: 15%;
+    position: absolute;
+    font-size: 8vw;
+    font-weight: bold;
+    text-align: center;
+    color:rgb(111, 96, 126);
+    font-family: 'arial', sans-serif;
+    letter-spacing: 5px;
+}
+
+h2{
+    width: 100%;
+    margin: 20vh auto 0px auto;
+    padding: 20px 0;
     font-family: 'arial';
-    color: sandybrown;
+    color:rgb(111, 96, 126);
 }
