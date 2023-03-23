@@ -1,15 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Main.css";
 import axios from "axios";
 
 
-let currentTime = new Date().getHours();
- 
-
-
 function Main (){
 
- if (currentTime < 12 && currentTime >= 0){
+
+let currentTime = new Date().getHours();
+const [time, setTime] = useState(currentTime);
+const updateTime = () => {
+   let currentTime = new Date().getHours();
+   setTime(currentTime);
+}
+
+useEffect(()=> {
+  setInterval(updateTime, 1000);
+})
+
+
+ if (time < 12 && time >= 0){
 
   return (
     <div className="main-container-morning">
@@ -22,7 +31,7 @@ function Main (){
     </div>
     )
 
-} else  if (currentTime >= 12 && currentTime <= 18){
+} else  if (time >= 12 && time <= 18){
 
   return (
     <div className="main-container-afternoon">
@@ -48,6 +57,7 @@ function Main (){
     )
 }
 }
+
 
 
 export default Main ; 
