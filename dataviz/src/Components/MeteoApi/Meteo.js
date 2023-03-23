@@ -1,2 +1,11 @@
 import React, { useEffect } from "react";
-import "./Main.css";
+import "./Meteo.css";
+
+function Meteo(){
+
+    return (
+        <div></div>
+    )
+}
+
+export default Meteo;
