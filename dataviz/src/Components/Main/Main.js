@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Main.css";
 import axios from "axios";
-import '../Map/Map'; 
+import '../Map/Map';
+
 
 
 function Main (){
@@ -40,6 +41,7 @@ console.log(currentTime)
         <p>ici la qualité de l'air parisien :&#41;</p>
       </section>
       <section className="map">
+
       <p>ici la map de Paris</p>
       </section>
     </div>
