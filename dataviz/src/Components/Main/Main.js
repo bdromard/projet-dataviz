@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Main.css";
 import axios from "axios";
+import '../Map/Map'; 
 
 
 function Main (){
@@ -14,9 +15,9 @@ const updateTime = () => {
 }
 
 useEffect(()=> {
-  setInterval(updateTime, 1000);
+  setInterval(updateTime, 3.6e+6);
 })
-
+console.log(currentTime)
 
  if (time < 12 && time >= 0){
 
