@@ -56,6 +56,7 @@ export default Main;
 import React, { useEffect } from "react";
 import "./Main.css";
 import axios from "axios";
+<<<<<<< HEAD
 
 
 let currentTime = new Date().getHours();
@@ -68,6 +69,10 @@ import axios from "axios";
 import '../Map/Map.js'; 
 import CreateMap from "../Map/Map.js";
 >>>>>>> f2fabb5e (sauvegarde map trop naze)
+=======
+import '../Map/Map';
+
+>>>>>>> 5db850b4 (début de l'affichage map)
 
 
 function Main (){
@@ -94,7 +99,11 @@ function Main (){
         <p>ici la qualité de l'air parisien :&#41;</p>
       </section>
       <section className="map">
+<<<<<<< HEAD
       <CreateMap /> 
+=======
+
+>>>>>>> 5db850b4 (début de l'affichage map)
       <p>ici la map de Paris</p>
       </section>
     </div>
