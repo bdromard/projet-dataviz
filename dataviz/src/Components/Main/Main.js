@@ -57,6 +57,7 @@ import React, { useEffect } from "react";
 import "./Main.css";
 import axios from "axios";
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 let currentTime = new Date().getHours();
@@ -71,6 +72,9 @@ import CreateMap from "../Map/Map.js";
 >>>>>>> f2fabb5e (sauvegarde map trop naze)
 =======
 import '../Map/Map';
+=======
+import Map from '../Map/Map';
+>>>>>>> 1f08db5a (map ajoutée au main :))
 
 >>>>>>> 5db850b4 (début de l'affichage map)
 
@@ -85,8 +89,14 @@ function Main (){
         <p>ici la qualité de l'air parisien :&#41;</p>
       </section>
       <section className="map">
+<<<<<<< HEAD
       <CreateMap /> 
       <p>ici la map de Paris</p>
+=======
+ 
+      < Map > </Map>
+
+>>>>>>> 1f08db5a (map ajoutée au main :))
       </section>
     </div>
     )
@@ -100,11 +110,17 @@ function Main (){
       </section>
       <section className="map">
 <<<<<<< HEAD
+<<<<<<< HEAD
       <CreateMap /> 
 =======
 
 >>>>>>> 5db850b4 (début de l'affichage map)
       <p>ici la map de Paris</p>
+=======
+ 
+      < Map > </Map>
+
+>>>>>>> 1f08db5a (map ajoutée au main :))
       </section>
     </div>
     )
@@ -116,9 +132,16 @@ function Main (){
         <p>ici la qualité de l'air parisien :&#41;</p>
       </section>
       <section className="map">
+<<<<<<< HEAD
       <CreateMap /> 
       <p>ici la map de Paris</p>
       </section>
+=======
+ 
+    < Map > </Map>
+
+ </section>
+>>>>>>> 1f08db5a (map ajoutée au main :))
     </div>
     )
 }
