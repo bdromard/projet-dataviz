@@ -5,7 +5,6 @@ import "./Map.css";
 
 function Map() {
 
-
   return (
     
     <MapContainer center={[48.87, 2.35]} zoom={12.2}>
@@ -13,12 +12,8 @@ function Map() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
-      {console.log("coucou")}
-
-      </MapContainer>
-      
+      </MapContainer>  
       ) ; 
-     
     } 
 
     export default Map ; 
