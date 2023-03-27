@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React from "react";
 import axios from "axios";
 import "./Main.css";
@@ -59,6 +60,14 @@ import axios from "axios";
 
 let currentTime = new Date().getHours();
  
+=======
+import React, { useEffect, useState } from "react";
+import {Routes, Route} from "react-router-dom";
+import "./Main.css";
+import axios from "axios";
+import '../Map/Map.js'; 
+import CreateMap from "../Map/Map.js";
+>>>>>>> f2fabb5e (sauvegarde map trop naze)
 
 
 function Main (){
@@ -71,6 +80,7 @@ function Main (){
         <p>ici la qualité de l'air parisien :&#41;</p>
       </section>
       <section className="map">
+      <CreateMap /> 
       <p>ici la map de Paris</p>
       </section>
     </div>
@@ -84,6 +94,7 @@ function Main (){
         <p>ici la qualité de l'air parisien :&#41;</p>
       </section>
       <section className="map">
+      <CreateMap /> 
       <p>ici la map de Paris</p>
       </section>
     </div>
@@ -96,6 +107,7 @@ function Main (){
         <p>ici la qualité de l'air parisien :&#41;</p>
       </section>
       <section className="map">
+      <CreateMap /> 
       <p>ici la map de Paris</p>
       </section>
     </div>
