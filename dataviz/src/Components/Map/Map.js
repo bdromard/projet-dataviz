@@ -1,4 +1,5 @@
 
+
 import React, { useEffect, useState } from "react";
 import { MapContainer, Marker, Popup, Polygon, TileLayer } from "react-leaflet";
 import { Icon } from "leaflet";
@@ -20,10 +21,17 @@ function Map() {
         resp.data.records[0].record.fields.geom.geometry.coordinates[0][0][0],
       ];
       const polygon = resp.data.records[0].record.fields.geom.geometry.coordinates
-      setPosition(polygon);
+      const bigTableau = []
+      const polygonReversed = []
+      for(let i=0 ; i < polygon.length ; i++){
+        for(let j=0 ; j < polygon[i].length ; j++){
+            polygonReversed.push(polygon[i][j].reverse())
+            }
+      }
+      bigTableau.push(polygonReversed)
+      setPosition(bigTableau);
     }
     fetchData();
-    // &refine=nsq_espace_vert:10297
   }, []);
   return (
     <div>
