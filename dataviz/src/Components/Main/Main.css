@@ -1,0 +1,7 @@
+.content{
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    background-color: rgb(84, 131, 84);
+}

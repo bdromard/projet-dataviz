@@ -21,14 +21,14 @@ const formatDate = () =>{
     const year = d.getFullYear()
     const date = d.getDate()
     const monthIndex = d.getMonth()
-    const monthName = months[d.getMonth()]
+    const monthName = months[monthIndex]
     const dayName = days[d.getDay()] // Thu
     const formatted = `${dayName}, ${date} ${monthName} ${year}`
     return formatted.toString()
   }
 
 const Clock = () => {
-    const jour =  new Date().toLocaleDateString();
+    // const jour =  new Date().toLocaleDateString();
     let time = new Date().toLocaleTimeString();
     const [currentTime, setCurrentTime] = useState(time);
     const updateTime = () => {
@@ -40,7 +40,7 @@ const Clock = () => {
         setInterval(updateTime, 1000);
     })
     formatDate()
-    console.log(time);
+    // console.log(time);
     
     return (
         <div> 
