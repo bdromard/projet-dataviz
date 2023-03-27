@@ -75,3 +75,5 @@ React.useEffect(() => {
 
 
     export default Map ; 
+
+    // URL API Open Data Paris pour les espaces verts du 75010 : https://opendata.paris.fr/api/v2/catalog/datasets/espaces_verts/records?refine=adresse_codepostal:75010
