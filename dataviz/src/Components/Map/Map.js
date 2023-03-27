@@ -2,6 +2,7 @@ import React from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Icon } from "leaflet";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import "./Map.css"
 
 
@@ -14,6 +15,8 @@ export default function CreateMap() {
     </MapContainer>
 } 
 =======
+=======
+>>>>>>> 00adab87 (sauvegarde Map.js avec URL API deuxième tentative)
 import "./Map.css";
 import axios from "axios"; 
 import espacesData from '/Users/malena/ada_groups/Dataviz/projet-dataviz/dataviz/src/Assets/espaces_verts.json' ; 
@@ -52,4 +55,9 @@ function Map() {
     }
 
     export default Map ; 
+<<<<<<< HEAD
 >>>>>>> 5db850b4 (début de l'affichage map)
+=======
+
+    // URL API Open Data Paris pour les espaces verts du 75010 : https://opendata.paris.fr/api/v2/catalog/datasets/espaces_verts/records?refine=adresse_codepostal:75010
+>>>>>>> 00adab87 (sauvegarde Map.js avec URL API deuxième tentative)
