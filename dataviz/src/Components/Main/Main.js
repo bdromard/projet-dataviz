@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import {Routes, Route} from "react-router-dom";
 import "./Main.css";
 import axios from "axios";
-import '../Map/Map'; 
+import '../Map/Map.js'; 
+import CreateMap from "../Map/Map.js";
 
 
 function Main (){
@@ -27,6 +29,7 @@ console.log(currentTime)
         <p>ici la qualité de l'air parisien :&#41;</p>
       </section>
       <section className="map">
+      <CreateMap /> 
       <p>ici la map de Paris</p>
       </section>
     </div>
@@ -40,6 +43,7 @@ console.log(currentTime)
         <p>ici la qualité de l'air parisien :&#41;</p>
       </section>
       <section className="map">
+      <CreateMap /> 
       <p>ici la map de Paris</p>
       </section>
     </div>
@@ -52,6 +56,7 @@ console.log(currentTime)
         <p>ici la qualité de l'air parisien :&#41;</p>
       </section>
       <section className="map">
+      <CreateMap /> 
       <p>ici la map de Paris</p>
       </section>
     </div>
