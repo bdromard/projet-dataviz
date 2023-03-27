@@ -29,11 +29,11 @@
 }
 
 .map {
-    border: 3px solid violet;
-    padding: 150px;
+    /* border: 3px solid violet; */
+    padding: 50px;
     text-align: center;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .pollution {
@@ -43,5 +43,6 @@
     margin-top: 10%;
     margin-left: 20%;
     margin-right: 20%;
+    
     
 }
