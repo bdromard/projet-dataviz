@@ -19,14 +19,20 @@ export default function CreateMap() {
 >>>>>>> 00adab87 (sauvegarde Map.js avec URL API deuxième tentative)
 import "./Map.css";
 import axios from "axios"; 
-import espacesData from '/Users/malena/ada_groups/Dataviz/projet-dataviz/dataviz/src/Assets/espaces_verts.json' ; 
+// import espacesData from '/Users/malena/ada_groups/Dataviz/projet-dataviz/dataviz/src/Assets/espaces_verts.json' ; 
 
 function Map() {
 
+//   const getData = async () => {
+//     axios.get('https://opendata.paris.fr/api/v2/catalog/datasets/espaces_verts/') 
+
+// }
+
   const getData = async () => {
-    axios.get('https://opendata.paris.fr/api/v2/catalog/datasets/espaces_verts/') 
+    await axios.get('https://opendata.paris.fr/api/v2/catalog/datasets/espaces_verts/records?refine=adresse_codepostal:75010&select=geom') 
 
 }
+
 
     return (
       
@@ -39,7 +45,7 @@ function Map() {
 
         {/* {getData(espaces => ( */}
           <Marker 
-          position={[getData.data.records.fields.geom.coordinates]}>
+          position={[getData.geom.geometry.coordinates[0]]}>
 
 
           </Marker>
