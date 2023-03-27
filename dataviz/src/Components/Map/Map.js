@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 import React from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+=======
+
+
+import React, { useEffect, useState } from "react";
+import { MapContainer, Marker, Popup, Polygon, TileLayer } from "react-leaflet";
+>>>>>>> e2716416 (sauvegarde avec dessin de l'espace vert, LET'S FUCKING GO)
 import { Icon } from "leaflet";
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -25,6 +32,7 @@ import axios from "axios";
 function Map() {
 <<<<<<< HEAD
 
+<<<<<<< HEAD
 //   const getData = async () => {
 //     axios.get('https://opendata.paris.fr/api/v2/catalog/datasets/espaces_verts/') 
 
@@ -63,6 +71,35 @@ React.useEffect(() => {
       console.log(positionR);
       <MapContainer center={[48.87, 2.35]} zoom={12.2}>
        <TileLayer
+=======
+  React.useEffect(() => {
+    async function fetchData() {
+      const resp = await axios.get(
+        `https://opendata.paris.fr/api/v2/catalog/datasets/espaces_verts/records?refine=adresse_codepostal:75010&refine=nsq_espace_vert:10297`
+      );
+      const positionR = [
+        resp.data.records[0].record.fields.geom.geometry.coordinates[0][0][1],
+        resp.data.records[0].record.fields.geom.geometry.coordinates[0][0][0],
+      ];
+      const polygon = resp.data.records[0].record.fields.geom.geometry.coordinates
+      const bigTableau = []
+      const polygonReversed = []
+      for(let i=0 ; i < polygon.length ; i++){
+        for(let j=0 ; j < polygon[i].length ; j++){
+            polygonReversed.push(polygon[i][j].reverse())
+            }
+      }
+      bigTableau.push(polygonReversed)
+      setPosition(bigTableau);
+    }
+    fetchData();
+  }, []);
+  return (
+    <div>
+    {position &&(
+    <MapContainer center={[48.87, 2.35]} zoom={12.2}>
+      <TileLayer
+>>>>>>> e2716416 (sauvegarde avec dessin de l'espace vert, LET'S FUCKING GO)
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
