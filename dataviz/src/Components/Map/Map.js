@@ -6,6 +6,7 @@ import { Icon } from "leaflet";
 import "./Map.css";
 import axios from "axios";
 
+const adaPosition = [48.8738822, 2.3566908];
 // Définition d'une couleur pour le dessin des polygones représentant les espaces verts du 75010.
 const redOptions = { color: 'red' }
 
@@ -23,102 +24,49 @@ function Map() {
       const resp = await axios.get(
         `https://opendata.paris.fr/api/v2/catalog/datasets/espaces_verts/records?refine=adresse_codepostal:75010&limit=68`
       );
-      // // Coordonnées de test pour la création d'un marqueur. Peut-être à supprimer.
-      // const positionR = [
-      //   resp.data.records[0].record.fields.geom.geometry.coordinates[0][0][1],
-      //   resp.data.records[0].record.fields.geom.geometry.coordinates[0][0][0],
-      // ];
-
-      // Travail en cours : boucle forEach pour dessiner un polygone par espace vert. 
+    
+     
       const records = resp.data.records
-      const finalArrayCoordinates = []
-      const intermediateArrayCoordinates = []
-      const polygonReversed = []
-        
-      for (let i = 0; i < records.length ; i++){
+      
+        // Constitution d'un tableau, qui recevra d'autres tableaux contenants les coordonnées de l'API de la mairie
+        // de Paris. On doit invertir les données de l'API pour chaque tableau, reçues en latitude/longitude ; Leaflet
+        // a besoin de données en longitude/latitude.
+
+        // For loop qui parcourt les résultats de la requête et rassemble les coordonnées de chaque
+        // espace vert dans un tableau (intermediateArrayCoordinates)
+        let intermediateArrayCoordinates = []
+        for (let i = 0; i < records.length ; i++){
         const polygon = resp.data.records[i].record.fields.geom.geometry.coordinates
         for(let j=0 ; j < polygon.length ; j++){
          intermediateArrayCoordinates.push(polygon)
         } 
       }
-      // console.log(intermediateArrayCoordinates)
+      
+      // Création de tableaux vides pour stocker les données et émuler la structure de données attendue
+      // par Leaflet.
       let finalPolyArray = [];
       let intermediatePolyArray = [];
       let firstPolyArray = [];
 
+      // Ensemble de loops forEach pour parcourir la structure de données et invertir les coordonnées. Ensuite
+      // on stocke toutes les coordonnées dans un tableau (firstPolyArray)
       intermediateArrayCoordinates.forEach(array => {
         array.forEach(anotherArray => {
           anotherArray.forEach(coordinate =>{
             firstPolyArray.push(coordinate.reverse())
           })
         })
-
-        // array.forEach(coordinate => {
-        // let reversedCoordinate = coordinate.reverse()
-        // console.log(reversedCoordinate)
     })
 
-    // console.log(firstPolyArray)
-      
-      // for (let k = 0; k < intermediateArrayCoordinates.length ; k++){
+
+    // For loop finale qui parcourt de nouveau les résultats de la requête, puis push dans le tableau final.
     
-      //   for (let l = 0 ; l < intermediateArrayCoordinates[k].length ; l++){
-
-      //     // for (let m = 0 ; m < intermediateArrayCoordinates[k][l].length ; m ++){
-      //     //   // console.log(intermediateArrayCoordinates[k][l].length)
-      //     //   console.log(intermediateArrayCoordinates[k])
-      //       // for (let n = 0 ; n < intermediateArrayCoordinates[k][l][m].length ; n++){
-      //       //   console.log(intermediateArrayCoordinates[k][l][m])
-      //     // let coordinateToPush = polyArray[l][m][n].reverse()
-      //     // firstPolyArray.push(coordinateToPush)
-      //   }}
-      //   }  
-
-
         for (let o = 0 ; o < records.length ; o ++){
           let polygon = resp.data.records[o].record.fields.geom.geometry.coordinates
           intermediatePolyArray.push(polygon)
           finalPolyArray.push(intermediatePolyArray)
         } 
         
-      
-
-        // console.log(intermediatePolyArray)
-        
-        
-      
-        
-        // finalArrayCoordinates.push(polygonReversed)
-        
-        // console.log(finalArrayCoordinates)
-      // })
-      
-        
-      
-      // for (let i = 0; i < records.length ; i++){
-      //   const polygon = resp.data.records[i].record.fields.geom.geometry.coordinates
-      //   for(let j=0 ; j < polygon.length ; j++){
-      //     for(let k=0 ; k < polygon[j].length ; k++){
-            
-      //         }
-      //   }
-      // }
-
-      
-        // Constitution d'un tableau, qui recevra d'autres tableaux contenants les coordonnées de l'API de la mairie
-        // de Paris. On doit invertir les données de l'API pour chaque tableau, reçues en latitude/longitude ; Leaflet
-        // a besoin de données en longitude/latitude.
-      // const bigTableau = []
-      // const polygonReversed = []
-      
-      // for(let i=0 ; i < polygon.length ; i++){
-      //   for(let j=0 ; j < polygon[i].length ; j++){
-      //       polygonReversed.push(polygon[i][j].reverse())
-      //       }
-      // }
-      // bigTableau.push(polygonReversed)
-      // ;
-      // });
       
       setPosition(finalPolyArray)
     }
@@ -128,7 +76,7 @@ function Map() {
     // Rendu de la map sur la page et dessin du polygone sur la carte.
     <div>
     {position &&(
-    <MapContainer center={[48.8738822, 2.3566908]} zoom={16}>
+    <MapContainer center={adaPosition} zoom={16}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
