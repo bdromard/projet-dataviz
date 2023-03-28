@@ -41,35 +41,55 @@ function Map() {
          intermediateArrayCoordinates.push(polygon)
         } 
       }
-    
+      // console.log(intermediateArrayCoordinates)
       let finalPolyArray = [];
       let intermediatePolyArray = [];
       let firstPolyArray = [];
 
-      
-      for (let k = 0; k < intermediateArrayCoordinates.length ; k++){
-        let polyArray = []
-        polyArray.push(intermediateArrayCoordinates[k])
-        for (let l = 0 ; l < polyArray.length ; l++){
-          for (let m = 0 ; m < polyArray[l].length ; m ++){
-            console.log(polyArray[l].length)
-            for (let n = 0 ; n < polyArray[l][m].length ; n++){
-              
-          let coordinateToPush = polyArray[l][m][n].reverse()
-          firstPolyArray.push(coordinateToPush)
-          }
-        }}
-        }  
-    
-        for (let o = 0; o < records.length ; o++){
-          const polygon = resp.data.records[o].record.fields.geom.geometry.coordinates
-          for (let p = 0 ; p < polygon.length ; p++){
-            intermediatePolyArray.push(firstPolyArray[p])
-          } 
-        }
-       
+      intermediateArrayCoordinates.forEach(array => {
+        array.forEach(anotherArray => {
+          anotherArray.forEach(coordinate =>{
+            firstPolyArray.push(coordinate.reverse())
+          })
+        })
 
-        console.log(intermediatePolyArray)
+        // array.forEach(coordinate => {
+        // let reversedCoordinate = coordinate.reverse()
+        // console.log(reversedCoordinate)
+    })
+
+    // console.log(firstPolyArray)
+      
+      // for (let k = 0; k < intermediateArrayCoordinates.length ; k++){
+    
+      //   for (let l = 0 ; l < intermediateArrayCoordinates[k].length ; l++){
+
+      //     // for (let m = 0 ; m < intermediateArrayCoordinates[k][l].length ; m ++){
+      //     //   // console.log(intermediateArrayCoordinates[k][l].length)
+      //     //   console.log(intermediateArrayCoordinates[k])
+      //       // for (let n = 0 ; n < intermediateArrayCoordinates[k][l][m].length ; n++){
+      //       //   console.log(intermediateArrayCoordinates[k][l][m])
+      //     // let coordinateToPush = polyArray[l][m][n].reverse()
+      //     // firstPolyArray.push(coordinateToPush)
+      //   }}
+      //   }  
+
+
+        for (let o = 0 ; o < records.length ; o ++){
+          let polygon = resp.data.records[o].record.fields.geom.geometry.coordinates
+          console.log(polygon)
+          intermediatePolyArray.push(polygon)
+          finalPolyArray.push(intermediatePolyArray)
+          // for (let p = 0 ; p < polygon.length ; p++){
+          //   console.log(firstPolyArray)
+          //   intermediatePolyArray.push(firstPolyArray[p])
+          //   finalPolyArray.push(intermediatePolyArray)
+          // }
+        } 
+        
+      
+
+        // console.log(intermediatePolyArray)
         
         
       
@@ -106,7 +126,7 @@ function Map() {
       // ;
       // });
       
-      setPosition(intermediatePolyArray)
+      setPosition(finalPolyArray)
     }
     fetchData();
   }, []);
