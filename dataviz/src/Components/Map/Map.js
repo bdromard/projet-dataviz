@@ -21,7 +21,7 @@ function Map() {
 
         // Réponse par Axios pour recevoir les données des espaces verts du 75010.
       const resp = await axios.get(
-        `https://opendata.paris.fr/api/v2/catalog/datasets/espaces_verts/records?refine=adresse_codepostal:75010`
+        `https://opendata.paris.fr/api/v2/catalog/datasets/espaces_verts/records?refine=adresse_codepostal:75010&limit=68`
       );
       // // Coordonnées de test pour la création d'un marqueur. Peut-être à supprimer.
       // const positionR = [
@@ -77,10 +77,8 @@ function Map() {
 
         for (let o = 0 ; o < records.length ; o ++){
           let polygon = resp.data.records[o].record.fields.geom.geometry.coordinates
-          console.log(polygon)
           intermediatePolyArray.push(polygon)
           finalPolyArray.push(intermediatePolyArray)
-  
         } 
         
       
@@ -130,7 +128,7 @@ function Map() {
     // Rendu de la map sur la page et dessin du polygone sur la carte.
     <div>
     {position &&(
-    <MapContainer center={[48.87, 2.35]} zoom={12.2}>
+    <MapContainer center={[48.8738822, 2.3566908]} zoom={16}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
