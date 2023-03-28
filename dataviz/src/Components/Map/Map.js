@@ -36,23 +36,27 @@ function Map() {
       const polygonReversed = []
       // records.forEach(record => {
         
-        for (let i = 0; i < records.length ; i++){
-          const polygon = resp.data.records[i].record.fields.geom.geometry.coordinates
-          for(let j=0 ; j < polygon.length ; j++){
-           intermediateArrayCoordinates.push(polygon)
-          } 
-        }
+      for (let i = 0; i < records.length ; i++){
+        const polygon = resp.data.records[i].record.fields.geom.geometry.coordinates
+        for(let j=0 ; j < polygon.length ; j++){
+         intermediateArrayCoordinates.push(polygon)
+        } 
+      }
+      console.log(intermediateArrayCoordinates)
 
 
-        for (let k = 0; k < intermediateArrayCoordinates.length ; k++){
-          const polyArray = intermediateArrayCoordinates[k]
-          for (let l = 0; l < polyArray.length ; l++){
-            polygonReversed.push(polyArray[l])
-            console.log(polyArray[l])
-          }
-          finalArrayCoordinates.push(polygonReversed)
+      for (let k = 0; k < intermediateArrayCoordinates.length ; k++){
+        let polyArray = []
+        polyArray.push(intermediateArrayCoordinates[k])
+        for (let l = 0 ; l < polyArray.length ; l++){
+          for (let m = 0 ; m < polyArray[l].length ; m ++)
+          console.log(polyArray[l][m][0].reverse())
         }
-        console.log(finalArrayCoordinates[0])
+        }  
+      
+        
+        finalArrayCoordinates.push(polygonReversed)
+        
         // console.log(finalArrayCoordinates)
       // })
       
@@ -82,6 +86,7 @@ function Map() {
       // bigTableau.push(polygonReversed)
       // ;
       // });
+      
       setPosition(finalArrayCoordinates[0])
     }
     fetchData();
@@ -104,3 +109,4 @@ function Map() {
 }
 
 export default Map;
+
