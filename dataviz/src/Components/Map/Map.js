@@ -34,7 +34,6 @@ function Map() {
       const finalArrayCoordinates = []
       const intermediateArrayCoordinates = []
       const polygonReversed = []
-      // records.forEach(record => {
         
       for (let i = 0; i < records.length ; i++){
         const polygon = resp.data.records[i].record.fields.geom.geometry.coordinates
@@ -42,20 +41,40 @@ function Map() {
          intermediateArrayCoordinates.push(polygon)
         } 
       }
-      console.log(intermediateArrayCoordinates)
+    
+      let finalPolyArray = [];
+      let intermediatePolyArray = [];
+      let firstPolyArray = [];
 
-
+      
       for (let k = 0; k < intermediateArrayCoordinates.length ; k++){
         let polyArray = []
         polyArray.push(intermediateArrayCoordinates[k])
         for (let l = 0 ; l < polyArray.length ; l++){
-          for (let m = 0 ; m < polyArray[l].length ; m ++)
-          console.log(polyArray[l][m][0].reverse())
-        }
+          for (let m = 0 ; m < polyArray[l].length ; m ++){
+            console.log(polyArray[l].length)
+            for (let n = 0 ; n < polyArray[l][m].length ; n++){
+              
+          let coordinateToPush = polyArray[l][m][n].reverse()
+          firstPolyArray.push(coordinateToPush)
+          }
+        }}
         }  
+    
+        for (let o = 0; o < records.length ; o++){
+          const polygon = resp.data.records[o].record.fields.geom.geometry.coordinates
+          for (let p = 0 ; p < polygon.length ; p++){
+            intermediatePolyArray.push(firstPolyArray[p])
+          } 
+        }
+       
+
+        console.log(intermediatePolyArray)
+        
+        
       
         
-        finalArrayCoordinates.push(polygonReversed)
+        // finalArrayCoordinates.push(polygonReversed)
         
         // console.log(finalArrayCoordinates)
       // })
@@ -87,7 +106,7 @@ function Map() {
       // ;
       // });
       
-      setPosition(finalArrayCoordinates[0])
+      setPosition(intermediatePolyArray)
     }
     fetchData();
   }, []);
