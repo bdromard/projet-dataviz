@@ -80,11 +80,7 @@ function Map() {
           console.log(polygon)
           intermediatePolyArray.push(polygon)
           finalPolyArray.push(intermediatePolyArray)
-          // for (let p = 0 ; p < polygon.length ; p++){
-          //   console.log(firstPolyArray)
-          //   intermediatePolyArray.push(firstPolyArray[p])
-          //   finalPolyArray.push(intermediatePolyArray)
-          // }
+  
         } 
         
       
