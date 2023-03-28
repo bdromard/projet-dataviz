@@ -25,7 +25,7 @@ function Main (){
       </section>
       <section className="map">
  
-      <Meteo > </Meteo>
+      {/* <Meteo > </Meteo> */}
 
       </section>
     </div>
