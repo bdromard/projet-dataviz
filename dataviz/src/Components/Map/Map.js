@@ -45,6 +45,8 @@ function Map() {
       // Création de tableaux vides pour stocker les données et émuler la structure de données attendue
       // par Leaflet.
       let finalPolyArray = [];
+      let testFinalPolyArray = [];
+      let anotherArray = [];
       let intermediatePolyArray = [];
       let firstPolyArray = [];
 
@@ -57,18 +59,23 @@ function Map() {
           })
         })
     })
-
+    
 
     // For loop finale qui parcourt de nouveau les résultats de la requête, puis push dans le tableau final.
     
         for (let o = 0 ; o < records.length ; o ++){
           let polygon = resp.data.records[o].record.fields.geom.geometry.coordinates
           intermediatePolyArray.push(polygon)
-          finalPolyArray.push(intermediatePolyArray)
         } 
         
-      
-      setPosition(finalPolyArray)
+        intermediatePolyArray.forEach(array =>{
+          array.forEach(yetAnotherArray => {
+          let valueToPush = firstPolyArray.splice(0, yetAnotherArray.length)
+          testFinalPolyArray.push(valueToPush)
+        })
+        })
+        console.log(testFinalPolyArray)
+      setPosition(testFinalPolyArray)
     }
     fetchData();
   }, []);
