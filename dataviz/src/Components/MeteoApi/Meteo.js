@@ -8,7 +8,7 @@ import axios from "axios";
 
 function Meteo(){
 
-    const [data, setData] = useState([])
+   
 
     useEffect(() => {
         async function fetchData() {
@@ -17,20 +17,20 @@ function Meteo(){
         `http://api.weatherapi.com/v1/current.json?key=e00cb81a6b504b01a77131032232303&q=Paris&lang=fr&aqi=yes`
         );
         console.log(response.data)
-        setData(response.data)
+        
         }
 fetchData();
-    }, []);
-}
+    });
+
 return(
     <div>
-    {data &&(
+   
     <Meteo>
 
     </Meteo>
-    )}
+    
     </div>
     
         ) 
-
+    }
 export default Meteo;
