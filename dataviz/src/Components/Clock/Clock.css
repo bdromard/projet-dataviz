@@ -1,29 +1,24 @@
-
-
 .clock{
-    width: 23vw;
-    height: 23vh;
     overflow: hidden;
     text-align: center;
 }
+.Header{
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+}
+h2{
 
-
-h1{
-    width:100% ;
-    margin-top: 15%;
-    position: absolute;
-    font-size: 8vw;
+    font-size: 2.5vw;
     font-weight: bold;
-    text-align: center;
-    color:rgb(111, 96, 126);
+    text-align: left;
     font-family: 'arial', sans-serif;
-    letter-spacing: 5px;
+    margin: 0;
 }
 
-h2{
-    width: 100%;
-    margin: 20vh auto 0px auto;
-    padding: 20px 0;
+h1{
     font-family: 'arial';
-    color:rgb(111, 96, 126);
+    margin: 0;
+    font-size: 2.5vw;
+    font-weight: bold;
 }

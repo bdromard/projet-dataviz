@@ -1,10 +1,13 @@
+
 #FirstPage{
-   color: white;
-   height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    background-image: url('../../Image/Header.jpeg');
+    background-repeat: no-repeat;
+    background-size: 100% 200%; 
+    background-position: center;
 }
-.content{
-    text-align: justify,center;
+.logo{
+    width: 120px;
+    height: 60px;
 }
-
-
-

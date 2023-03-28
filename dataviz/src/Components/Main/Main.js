@@ -1,102 +1,66 @@
-// import React from "react";
-// import axios from "axios";
 import "./Main.css";
 
 function Main() {
-  //   React.useEffect(() => {
-  // async function fetchData() {
+    
+const black = [0, 0, 0];
+const purple = [88, 52, 133];
+const orange = [232, 131, 72];
+const blue = [45, 221, 227];
 
-
-  //   try {
-  //     const response = await axios.get(
-  //       `https://opendata.paris.fr/api/v2/catalog/datasets/espaces_verts/records?limit=100`
-  //     );
-  //     const divRoute = document.getElementById("root");
-  //     response.data.records.forEach((Vert) => {
-  //       const title = document.createElement("h2");
-  //       title.innerText = Vert.record.fields.nom_ev;
-  //       divRoute.appendChild(title);
-
-  //     });
-  //   }
-  //   catch (err) {
-  //     console.log(err);
-  //   }
-  // }
-  // fetchData();
-  // });
-  return (
-    <div class="content">
- <p>
-   Rebecca Stone had always loved pretty Kitchen with its tall, teeny-tiny
-   tree. It was a place where she felt happy. She was an articulate,
-   grateful, Matcha drinker with pretty hair and pink eyes. Her friends saw
-   her as a warm, worried Warrior. Once, she had even helped a sharp kitten
-   cross the road. That's the sort of woman he was. Rebecca walked over to
-   the window and reflected on her huge surroundings. The sun shone like
-   chatting cat. Then she saw something in the distance, or rather someone.
-   It was the figure of Doni Stone. Doni was a greedy Chicken with pointy
-   hair and tall eyes. Rebecca gulped. She was not prepared for Doni. As
-   Rebecca stepped outside and Doni came closer, she could see the jittery
-   glint in his eye. Doni gazed with the affection of 3564 popular thankful
-   tortoise. He said, in hushed tones, "I love you and I want Cookies."
-   Rebecca looked back, even more calm and still fingering the solid oven.
-   "Doni, I don't have to give it to you," she replied. They looked at each
-   other with laugh feelings, like two breezy, big bird cooking at a very
-   generous Valentine's meal, which had Kpop music playing in the
-   background and two noble uncles dancing to the beat. Rebecca regarded
-   Doni's pointy hair and tall eyes. "I feel the same way!" revealed
-   Rebecca with a delighted grin. Doni looked ambivalent, his emotions
-   blushing like a bitter, brief banana. Then Doni came inside for a nice
-   drink of Matcha. THE END
-   Rebecca Stone had always loved pretty Kitchen with its tall, teeny-tiny
-   tree. It was a place where she felt happy. She was an articulate,
-   grateful, Matcha drinker with pretty hair and pink eyes. Her friends saw
-   her as a warm, worried Warrior. Once, she had even helped a sharp kitten
-   cross the road. That's the sort of woman he was. Rebecca walked over to
-   the window and reflected on her huge surroundings. The sun shone like
-   chatting cat. Then she saw something in the distance, or rather someone.
-   It was the figure of Doni Stone. Doni was a greedy Chicken with pointy
-   hair and tall eyes. Rebecca gulped. She was not prepared for Doni. As
-   Rebecca stepped outside and Doni came closer, she could see the jittery
-   glint in his eye. Doni gazed with the affection of 3564 popular thankful
-   tortoise. He said, in hushed tones, "I love you and I want Cookies."
-   Rebecca looked back, even more calm and still fingering the solid oven.
-   "Doni, I don't have to give it to you," she replied. They looked at each
-   other with laugh feelings, like two breezy, big bird cooking at a very
-   generous Valentine's meal, which had Kpop music playing in the
-   background and two noble uncles dancing to the beat. Rebecca regarded
-   Doni's pointy hair and tall eyes. "I feel the same way!" revealed
-   Rebecca with a delighted grin. Doni looked ambivalent, his emotions
-   blushing like a bitter, brief banana. Then Doni came inside for a nice
-   drink of Matcha. THE END
- </p>
-
-
-</div>
-  )
+function lerp(start, end, amt) {
+  return (1 - amt) * start + amt * end;
 }
 
-export default Main;
+function lerpColor(from, to, startTime, endTime, hour) {
+  const lerpAmt = (hour - startTime) / (endTime - startTime);
+  const lerped = [];
+  for (let i = 0; i < 3; i++) {
+    lerped[i] = lerp(from[i], to[i], lerpAmt);
+  }
+  return lerped;
+}
 
-// function Main() {
-//   async function fetchData() {
-//     try {
-//       const response = await axios.get(
-//         `https://rickandmortyapi.com/api/character`
-//       );
+function setColours() {
+  const now = new Date();
+  const hour = now.getHours();
+  // const min = now.getMinutes();
+  // const sec = now.getSeconds();  
+  let first = document.getElementById("main")
 
-//       const divRoute = document.getElementById("root");
-//       response.data.results.forEach((character) => {
-//         const title = document.createElement("h2");
-//         title.innerText = character.name;
-//         divRoute.appendChild(title);
-//       });
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   }
-//   fetchData();
-// }
+  let currentColor;
 
-// export default Main;
+  if (hour >= 0 && hour <= 4.5) {
+    currentColor = lerpColor(black, purple, 0, 4.5, hour);
+  } else if (hour > 4.5 && hour <= 5.5) {
+    currentColor = lerpColor(purple, orange, 4.5, 5.5, hour);
+  } else if (hour > 5.5 && hour <= 12) {
+    currentColor = lerpColor(orange, blue, 5.5, 12, hour);
+  } else if (hour > 12 && hour <= 18.5) {
+    currentColor = lerpColor(blue, orange, 12, 18.5, hour);
+  } else if (hour > 18.5 && hour <= 19.5) {
+    currentColor = lerpColor(orange, purple, 18.5, 19.5, hour);
+  } else if (hour > 19.5 && hour <= 24) {
+    currentColor = lerpColor(purple, black, 19.5, 24, hour);
+  }
+
+  const colorString = `rgb(${Math.round(currentColor[0])},${Math.round(
+    currentColor[1]
+  )},${Math.round(currentColor[2])})`;
+  
+ first.style.background = colorString;
+}
+setInterval(setColours)
+
+// setInterval(setColours, 1000);
+return (
+  <div id ="main">
+     <h3>Main Here</h3>
+      </div>
+)
+ }
+
+ export default Main
+
+
+
+

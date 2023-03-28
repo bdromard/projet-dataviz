@@ -1,7 +1,6 @@
-.content{
-    height: 100vh;
-    text-align: center;
+#main{
     display: flex;
     align-items: center;
-    background-color: rgb(84, 131, 84);
+    height: 100vh;
+    justify-content: center;
 }
