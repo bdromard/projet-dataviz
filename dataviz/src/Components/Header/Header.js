@@ -1,21 +1,19 @@
 //import React, { useEffect } from "react";
 import './Header.css';
+import Clock from '../Clock/Clock';
+import Logo from '../../Image/Logo.png';
+// ****************************************************************
+ function Header(){
 
 
-function Header(){
+return (
+  <div id = "FirstPage">
+    <Clock />
+    <img src={Logo} alt="Logo" className='logo' />
+ </div>
+)
+ }
 
-    let time = Date.now()
-    console.log(time)
+ export default Header
 
-    return (
-        <div className='header-container'>
-          <p>ceci est un header</p>
-        </div>
 
-        
-      )
-    
-      
-}
-
-export default Header ; 

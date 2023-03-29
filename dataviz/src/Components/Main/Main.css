@@ -1,48 +1,21 @@
 .main-container-morning {
-    text-align: center;
-    display: flex;
-    background-color: aliceblue; 
-    width: 100%;
-    display:grid;
-    grid-gap: 200px;
-    /* margin-bottom: 5%; */
+  text-align: center;
+  display: flex;
+  width: 100%;
+  display: grid;
+  grid-gap: 200px;
+  /* margin-bottom: 5%; */
 }
-
-.main-container-afternoon {
-    text-align: center;
-    display: flex;
-    background-color: papayawhip; 
-    width: 100%;
-    display:grid;
-    grid-gap: 200px;
-    /* margin-bottom: 5%; */
-}
-
-.main-container-night {
-    text-align: center;
-    display: flex;
-    background-color: cadetblue; 
-    width: 100%;
-    display:grid;
-    grid-gap: 200px;
-    /* margin-bottom: 5%; */
-}
-
 .map {
-    /* border: 3px solid violet; */
-    padding: 50px;
-    text-align: center;
-    margin-left: 10%;
-    margin-right: 10%;
+  /* padding: 50px; */
+
+  margin-left: 10%;
+  margin-right: 10%;
+  border: 2px solid rgb(67, 155, 223);
+  /* padding: 2em; */
 }
 
-.pollution {
-    border: 3px solid violet;
-    padding: 100px;
-    text-align: center;
-    margin-top: 10%;
-    margin-left: 20%;
-    margin-right: 20%;
-    
-    
+#main {
+  padding: 2em;
+  text-align: center;
 }
