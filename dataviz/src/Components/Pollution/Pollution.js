@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import { divIcon } from "leaflet";
-
 
 function Pollution(){
 
@@ -15,21 +13,15 @@ const [pollution, setPollution] = useState([]);
         
         try {  
         
-            const pollution = await axios.get('https://api.airparif.asso.fr/indices/prevision/commune?insee=75056', 
-             { headers:{'x-api-key': '899d5237-f25d-91d0-2452-150bd3681d4e'} }) ; 
-            console.log(pollution.data)
-
-            const divPol = document.getElementById("root") ; 
-
-            for (let i = 0 ; i < pollution ; i ++){
-
-                const state = document.createElement("p");
-                state.innerText = pollution[i];  
-           
+            const pollution = await axios.get('https://api.meteo-concept.com/api/forecast/daily/0?insee=75056&world=false&token=c565585230c75675206737f0b46af427eb7060b631affa5a132275d74b316be6',
+            ) ; 
+             
+            console.log(pollution.data.forecast.tmax)
+            const divPol = document.getElementById("pollution") ; 
+                const state = document.createElement("h1");
+                state.innerText = pollution.data.forecast.tmax + "°C";  
                 divPol.appendChild(state) ;
-                
-
-            } ;
+             ;
 
         } catch (err) {
             console.log(err) ; 

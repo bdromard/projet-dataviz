@@ -4,6 +4,7 @@ import "./Main.css";
 import axios from "axios";
 import Map from '../Map/Map';
 import Pollution from "../Pollution/Pollution";
+import '../Pollution/Pollution'; 
 
 
 
@@ -27,7 +28,9 @@ console.log(currentTime)
   return (
     <div className="main-container-morning">
       <section className="pollution">
-      <Pollution><p id="root"></p> </Pollution>
+      <h id="pollution" > 
+         <Pollution></Pollution>
+         </h>  
         
       </section>
       <section className="map">
@@ -43,8 +46,9 @@ console.log(currentTime)
   return (
     <div className="main-container-afternoon">
          <section className="pollution">
-        
-         <Pollution><p id="root"></p> </Pollution>
+      <p id="pollution">   
+         <Pollution></Pollution>
+         </p>  
       </section>
       <section className="map">
  
@@ -59,7 +63,9 @@ console.log(currentTime)
     <div className="main-container-night">
         <section className="pollution">
         
-        <Pollution><p id="root"></p> </Pollution>
+        <h1 id="pollution">   
+  
+         </h1>  
       </section>
       <section className="map">
  
