@@ -9,6 +9,8 @@ import axios from "axios";
 const adaPosition = [48.8738822, 2.3566908];
 // Définition d'une couleur pour le dessin des polygones représentant les espaces verts du 75010.
 const redOptions = { color: 'red' }
+const fillBlueOptions = { fillColor: 'blue' }
+const purpleOptions = { color: 'purple' }
 
 // Function Map pour le rendu de la map.
 function Map() {
@@ -35,25 +37,30 @@ function Map() {
         // For loop qui parcourt les résultats de la requête et rassemble les coordonnées de chaque
         // espace vert dans un tableau (intermediateArrayCoordinates)
         let intermediateArrayCoordinates = []
+        
         for (let i = 0; i < records.length ; i++){
         const polygon = resp.data.records[i].record.fields.geom.geometry.coordinates
         for(let j=0 ; j < polygon.length ; j++){
          intermediateArrayCoordinates.push(polygon)
         } 
       }
+
+      // Code pour gérer le cas où l'on reçoit les coordonnées en longitude / latitude :
       
       // Création de tableaux vides pour stocker les données et émuler la structure de données attendue
       // par Leaflet.
-      let finalPolyArray = [];
-      let intermediatePolyArray = [];
-      let firstPolyArray = [];
 
-      // Ensemble de loops forEach pour parcourir la structure de données et invertir les coordonnées. Ensuite
-      // on stocke toutes les coordonnées dans un tableau (firstPolyArray)
+      // let finalPolyArray = [];
+      // let intermediatePolyArray = [];
+      // let firstPolyArray = [];
+
+      
+      // Ensemble de loops forEach pour parcourir la structure de données et invertir les coordonnées.
+
       intermediateArrayCoordinates.forEach(array => {
         array.forEach(anotherArray => {
           anotherArray.forEach(coordinate =>{
-            firstPolyArray.push(coordinate.reverse())
+            coordinate.reverse()
           })
         })
     })
@@ -61,14 +68,18 @@ function Map() {
 
     // For loop finale qui parcourt de nouveau les résultats de la requête, puis push dans le tableau final.
     
-        for (let o = 0 ; o < records.length ; o ++){
-          let polygon = resp.data.records[o].record.fields.geom.geometry.coordinates
-          intermediatePolyArray.push(polygon)
-          finalPolyArray.push(intermediatePolyArray)
-        } 
+    // intermediatePolyArray.forEach(array =>{
+    //   array.forEach(yetAnotherArray => {
+    //   let valueToPush = firstPolyArray.splice(0, yetAnotherArray.length)
+    //   finalPolyArray.push(valueToPush)
+    // })
+    // })
+
+    // Tableau à utiliser si besoin d'inverser les coordonnées : 
+    // setPosition(finalPolyArray)
         
       
-      setPosition(finalPolyArray)
+      setPosition(intermediateArrayCoordinates)
     }
     fetchData();
   }, []);
@@ -82,7 +93,7 @@ function Map() {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
 
-      <Polygon pathOptions={redOptions} positions={position} />
+      <Polygon pathOptions={purpleOptions} positions={position} />
     </MapContainer>
   )};
   </div>
