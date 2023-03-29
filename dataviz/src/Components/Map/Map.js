@@ -1,32 +1,22 @@
 // Importation des différentes librairies utilisées pour le rendu de la carte : React, Leaflet, Axios.
 
 import React, { useEffect, useState } from "react";
-import { MapContainer, Marker, Popup, Polygon, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, Popup, Polygon, TileLayer, Tooltip } from "react-leaflet";
 import { Icon } from "leaflet";
 import "./Map.css";
 import axios from "axios";
 
-const adaPosition = [48.8738822, 2.3566908];
-// Définition d'une couleur pour le dessin des polygones représentant les espaces verts du 75010.
+// Constante de la position d'Ada Tech School pour le zoom sur la carte.
+
+const adaPosition = [48.87389115024882, 2.3588821526197985];
+
+// Définition de couleurs pour le dessin des polygones représentant les espaces verts du 75010.
+
 const redOptions = { color: 'red' };
 const fillBlueOptions = { fillColor: 'blue' };
 const purpleOptions = { color: 'purple' };
 
-// Création d'un tableau vide pour recueillir toutes les couleurs générées aléatoirement
-let colorArray = [];
-// Création d'un dictionnaire pour pouvoir être appelé dans les options du polygone à dessiner sur la
-// carte. Est-ce que cela fonctionne avec des back-ticks ?
-let randomColorOptions = { color: `${colorArray[getRandomInt(colorArray.length)]}` };
-// Couleur de test : code HEX fonctionne.
-let testColor = {color: '#05D27C'}
-
-// Fonctions pour obtenir une couleur aléatoire
-// Fonctionne pour obtenir un nombre aléatoire, pour pouvoir être utilisé en index dans l'option couleur
-// du polygone. Le max sera la longueur du tableau colorArray.
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
-// Fonction pour obtenir un code HEX aléatoire.
+// Fonction pour obtenir un code couleur HEX aléatoire.
 function getRandomColor() 
 {
     let letters = '0123456789ABCDEF'.split('');
@@ -37,6 +27,16 @@ function getRandomColor()
     }
 return color;
 }
+// Création d'un dictionnaire avec couleur aléatoire pour pouvoir être appelé dans les options du polygone à dessiner sur la
+// carte. 
+
+let randomColorOptions = { color: getRandomColor() };
+
+// Couleur de test : code HEX fonctionne.
+let testColor = {color: '#05D27C'}
+
+
+
 
 // Function Map pour le rendu de la map.
 function Map() {
@@ -55,7 +55,7 @@ function Map() {
         `https://opendata.paris.fr/api/v2/catalog/datasets/espaces_verts/records?refine=adresse_codepostal:75010&limit=68`
       );
     
-     console.log(randomColorOptions)
+     
       const records = resp.data.records
       
         // Constitution d'un tableau, qui recevra d'autres tableaux contenants les coordonnées de l'API de la mairie
@@ -89,16 +89,14 @@ function Map() {
       // par polygone à dessiner.
 
       intermediateArrayCoordinates.forEach(array => {
-        let colorToPush = getRandomColor()
-        colorArray.push(colorToPush)
         array.forEach(anotherArray => {
           anotherArray.forEach(coordinate =>{
             coordinate.reverse()
           })
         })
     })
-    console.log(colorArray[getRandomInt(colorArray.length)])
-  
+
+    console.log(intermediateArrayCoordinates)
     
 
     // For loop finale qui parcourt de nouveau les résultats de la requête, puis push dans le tableau final.
@@ -117,12 +115,11 @@ function Map() {
     //   let colorToUse = colorArray[element]
     //   setColor(colorToUse)
     // })
-      
       setPosition(intermediateArrayCoordinates)
       
     }
     fetchData();
-  }, [], {});
+  }, []);
   return (
     // Rendu de la map sur la page et dessin du polygone sur la carte.
     <div>
@@ -132,7 +129,14 @@ function Map() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
-      <Polygon pathOptions={testColor} positions={position} />
+      <Marker position={adaPosition}>
+        <Popup>
+          ADA TECH SCHOOL
+        </Popup>
+      </Marker>
+      <Polygon pathOptions={randomColorOptions} positions={position}>
+      <Tooltip sticky>Espace vert du Xème arrondissement</Tooltip>
+      </Polygon>
     </MapContainer>
   )};
   </div>
