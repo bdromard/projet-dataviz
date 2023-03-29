@@ -3,6 +3,7 @@ import {Routes, Route} from "react-router-dom";
 import "./Main.css";
 import axios from "axios";
 import Map from '../Map/Map';
+import Pollution from "../Pollution/Pollution";
 
 
 
@@ -26,7 +27,8 @@ console.log(currentTime)
   return (
     <div className="main-container-morning">
       <section className="pollution">
-        <p>ici la qualité de l'air parisien :&#41;</p>
+        
+        <Pollution> </Pollution>
       </section>
       <section className="map">
  
