@@ -1,0 +1,19 @@
+/* .header-container{
+    display: flex;
+   
+} */
+
+
+#FirstPage{
+    display: flex;
+    justify-content: space-between;
+    /* background-image: url('../../Image/Header.jpeg'); */
+    background-repeat: no-repeat;
+    background-size: 100% 200%; 
+    background-position: center;
+    background-color: rgb(161, 203, 235);    
+}
+.logo{
+    width: 120px;
+    height: 60px;
+}
