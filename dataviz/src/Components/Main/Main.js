@@ -27,8 +27,8 @@ console.log(currentTime)
   return (
     <div className="main-container-morning">
       <section className="pollution">
+      <Pollution><p id="root"></p> </Pollution>
         
-        <Pollution> </Pollution>
       </section>
       <section className="map">
  
@@ -42,8 +42,9 @@ console.log(currentTime)
 
   return (
     <div className="main-container-afternoon">
-        <section className="pollution">
-        <p>ici la qualité de l'air parisien :&#41;</p>
+         <section className="pollution">
+        
+         <Pollution><p id="root"></p> </Pollution>
       </section>
       <section className="map">
  
@@ -57,7 +58,8 @@ console.log(currentTime)
   return (
     <div className="main-container-night">
         <section className="pollution">
-        <p>ici la qualité de l'air parisien :&#41;</p>
+        
+        <Pollution><p id="root"></p> </Pollution>
       </section>
       <section className="map">
  
