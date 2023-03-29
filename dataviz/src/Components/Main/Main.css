@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&family=Open+Sans:wght@700&display=swap')
+
 .main-container-morning {
   text-align: center;
   display: flex;
@@ -21,5 +23,5 @@
 }
 
 #titreMap {
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+  font-family: 'DM Serif Display', serif;
 }
