@@ -8,15 +8,43 @@ import axios from "axios";
 
 const adaPosition = [48.8738822, 2.3566908];
 // Définition d'une couleur pour le dessin des polygones représentant les espaces verts du 75010.
-const redOptions = { color: 'red' }
-const fillBlueOptions = { fillColor: 'blue' }
-const purpleOptions = { color: 'purple' }
+const redOptions = { color: 'red' };
+const fillBlueOptions = { fillColor: 'blue' };
+const purpleOptions = { color: 'purple' };
+
+// Création d'un tableau vide pour recueillir toutes les couleurs générées aléatoirement
+let colorArray = [];
+// Création d'un dictionnaire pour pouvoir être appelé dans les options du polygone à dessiner sur la
+// carte. Est-ce que cela fonctionne avec des back-ticks ?
+let randomColorOptions = { color: `${colorArray[getRandomInt(colorArray.length)]}` };
+// Couleur de test : code HEX fonctionne.
+let testColor = {color: '#05D27C'}
+
+// Fonctions pour obtenir une couleur aléatoire
+// Fonctionne pour obtenir un nombre aléatoire, pour pouvoir être utilisé en index dans l'option couleur
+// du polygone. Le max sera la longueur du tableau colorArray.
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+// Fonction pour obtenir un code HEX aléatoire.
+function getRandomColor() 
+{
+    let letters = '0123456789ABCDEF'.split('');
+    let color = '#';
+    for (var i = 0; i < 6; i++ ) 
+    {
+       color += letters[Math.round(Math.random() * 15)];
+    }
+return color;
+}
 
 // Function Map pour le rendu de la map.
 function Map() {
 
     //Définition d'une constante pour la position à utiliser pour le dessin des espaces verts ; utilisation de useState.
   const [position, setPosition] = useState([]);
+
+  // const [colorToSet, setColor] = useState({ color : `${}`});
 
     //Fonction asynchrone pour la récupération des données de la mairie de Paris.
   React.useEffect(() => {
@@ -27,7 +55,7 @@ function Map() {
         `https://opendata.paris.fr/api/v2/catalog/datasets/espaces_verts/records?refine=adresse_codepostal:75010&limit=68`
       );
     
-     
+     console.log(randomColorOptions)
       const records = resp.data.records
       
         // Constitution d'un tableau, qui recevra d'autres tableaux contenants les coordonnées de l'API de la mairie
@@ -53,17 +81,24 @@ function Map() {
       // let finalPolyArray = [];
       // let intermediatePolyArray = [];
       // let firstPolyArray = [];
+ 
 
       
       // Ensemble de loops forEach pour parcourir la structure de données et invertir les coordonnées.
+      // En même temps, appel de la fonction get_random_color() pour générer une couleur aléatoire
+      // par polygone à dessiner.
 
       intermediateArrayCoordinates.forEach(array => {
+        let colorToPush = getRandomColor()
+        colorArray.push(colorToPush)
         array.forEach(anotherArray => {
           anotherArray.forEach(coordinate =>{
             coordinate.reverse()
           })
         })
     })
+    console.log(colorArray[getRandomInt(colorArray.length)])
+  
     
 
     // For loop finale qui parcourt de nouveau les résultats de la requête, puis push dans le tableau final.
@@ -78,11 +113,16 @@ function Map() {
     // Tableau à utiliser si besoin d'inverser les coordonnées : 
     // setPosition(finalPolyArray)
         
+    // colorArray.forEach(element => {
+    //   let colorToUse = colorArray[element]
+    //   setColor(colorToUse)
+    // })
       
       setPosition(intermediateArrayCoordinates)
+      
     }
     fetchData();
-  }, []);
+  }, [], {});
   return (
     // Rendu de la map sur la page et dessin du polygone sur la carte.
     <div>
@@ -92,8 +132,7 @@ function Map() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
-
-      <Polygon pathOptions={purpleOptions} positions={position} />
+      <Polygon pathOptions={testColor} positions={position} />
     </MapContainer>
   )};
   </div>
