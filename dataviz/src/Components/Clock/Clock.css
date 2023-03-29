@@ -1,0 +1,24 @@
+/* .clock{
+    overflow: hidden;
+    text-align: center;
+} */
+.Header{
+    display: flex;
+    flex-direction: column;
+    color: #3aa3b8;
+}
+h2{
+
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+    font-family: 'arial', sans-serif;
+    margin: 0;
+}
+
+h1{
+    font-family: 'arial';
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+}
