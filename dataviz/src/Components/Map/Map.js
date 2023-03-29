@@ -64,7 +64,7 @@ function Map() {
           })
         })
     })
-
+    
 
     // For loop finale qui parcourt de nouveau les résultats de la requête, puis push dans le tableau final.
     
