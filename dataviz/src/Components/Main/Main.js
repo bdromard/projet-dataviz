@@ -72,8 +72,8 @@ function Main (){
         {/* <section className="pollution"> */}
           {/* <p>ici la qualité de l'air parisien :&#41;</p> */}
         {/* </section> */}
-        <h3>
-        Ici la Map
+        <h3 id="titreMap">
+        Carte des espaces verts du Xème arrondissement
         </h3>
         <section className="map">
         
