@@ -66,7 +66,7 @@ function Main (){
   
 
   return (
-    <div id="main">
+    <><div id="main">
 
     {/* <div className="main-container-morning"> */}
         {/* <section className="pollution"> */}
