@@ -7,10 +7,21 @@ import Logo from '../../Image/Logo.png';
 
 
 return (
-  <div id = "FirstPage">
-    <Clock />
-    <img src={Logo} alt="Logo" className='logo' />
- </div>
+  <> <section className='Header'>
+
+  <div className='Titre'>
+    <p> Paris<br/>
+        Respire</p>
+
+  </div>
+
+  <div className = "Clock">
+   <p> <Clock> </Clock> </p>
+   {/* <img src={Logo} alt="Logo" className='logo' /> */}
+  </div>
+
+  </section>
+  </>
 )
  }
 

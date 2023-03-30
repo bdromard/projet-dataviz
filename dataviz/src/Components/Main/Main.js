@@ -3,6 +3,7 @@ import {Routes, Route} from "react-router-dom";
 import "./Main.css";
 import axios from "axios";
 import Map from '../Map/Map';
+import Meteo from '../Meteo/Meteo';
 
 
 
@@ -14,10 +15,11 @@ function Main (){
   // const orange = [232, 131, 72];
   // const blue = [45, 221, 227];
 
-  const black = [14, 162, 218];
-  const purple = [14, 198, 186];
-  const orange = [14, 135, 227];
-  const blue = [14, 99, 227];
+  // BLANC ROSE VERT 
+  const black = [255, 255, 255]; 
+  const purple = [255, 166, 158];
+  const orange = [217, 3, 104];
+  const blue = [132, 220, 198];
   
   function lerp(start, end, amt) {
     return (1 - amt) * start + amt * end;
@@ -35,7 +37,7 @@ function Main (){
   function setColours() {
     const now = new Date();
     // const hour = now.getHours();
-    const hour = 19;
+    const hour = 20;
     // const min = now.getMinutes();
     // const sec = now.getSeconds();  
     let first = document.getElementById("main")
@@ -66,21 +68,32 @@ function Main (){
   
 
   return (
-    <><div id="main">
+    <><section id="main">
 
     {/* <div className="main-container-morning"> */}
         {/* <section className="pollution"> */}
           {/* <p>ici la qualité de l'air parisien :&#41;</p> */}
         {/* </section> */}
-        <h3 id="titreMap">
-        Carte des espaces verts du Xème arrondissement
-        </h3>
-        <section className="map">
-        
-          <Map> </Map>
+          <div className="map">
+          <Map>  </Map>
+          </div>
 
-        </section>
-        </div>
+          <div className="meteotemp">
+            <Meteo></Meteo>
+            <p id="Meteo"><Meteo></Meteo></p>
+            <p id="Pluie"></p>
+          </div>
+
+          
+      </section>
+
+        {/* <h3 id="titreMap">Espaces verts 75010</h3> */}
+        {/* <section className="map">
+        
+          // <Map> </Map>
+
+        </section> */}
+        
       {/* </div> */}
       
       </>

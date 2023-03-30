@@ -2,23 +2,28 @@
     overflow: hidden;
     text-align: center;
 } */
-.Header{
-    display: flex;
-    flex-direction: column;
-    color: #3aa3b8;
+.Heure{
+    /* display: flex; */
+    /* flex-direction: column; */
+    float:none;
+    position: relative;
+    /* width: 200px; */
 }
 h2{
 
     font-size: 20px;
     font-weight: bold;
-    text-align: left;
-    font-family: 'arial', sans-serif;
-    margin: 0;
+    font-family: 'Inconsolata', monospace;
+    margin-bottom: 0px;
+    margin-top: 0px;
+
 }
 
 h1{
-    font-family: 'arial';
+    font-family: 'Inconsolata', monospace;
     margin: 0;
     font-size: 20px;
     font-weight: bold;
+    margin-bottom: 0px;
+    margin-top: 0px;
 }
