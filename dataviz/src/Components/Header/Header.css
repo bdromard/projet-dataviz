@@ -1,19 +1,8 @@
-/* .header-container{
-    display: flex;
-   
-} */
-
-
 
 .Header{
     display: flex;
     justify-content: space-between;
-    /* background-image: url('../../Image/Header.jpeg'); */
-    /* background-repeat: no-repeat; */
-    /* background-size: 100% 200%;  */
-    /* background-position: center; */
     background-color: rgb(255, 255, 255);    
-    /* position: relative; */
     flex-direction: row;
     color: rgb(36, 106, 115);
 }
@@ -22,6 +11,8 @@
     font-family: 'Inconsolata', monospace ;
     font-size: 30px;
     font-weight: bold;
+    display: flex;
+    margin-left: 20px;
 }
 
 .Clock {
@@ -33,6 +24,8 @@
 
 }
 .logo{
-    width: 120px;
-    height: 60px;
+    width: 180px;
+    height: 120px;
+    margin-left: 50px;
+    margin-top: 20px;
 }

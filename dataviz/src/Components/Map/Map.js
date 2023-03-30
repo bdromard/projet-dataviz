@@ -138,7 +138,7 @@ function Map() {
       <Tooltip sticky>Espace vert du Xème arrondissement</Tooltip>
       </Polygon>
     </MapContainer>
-  )};
+  )}
   </div>
   )
 }
