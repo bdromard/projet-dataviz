@@ -114,6 +114,17 @@ React.useEffect(() => {
       position = {positionR
       }>
       </Marker>
+<<<<<<< HEAD
+=======
+      <Polygon pathOptions={randomColorOptions} positions={position}>
+      <Tooltip sticky>Espace vert du Xème arrondissement</Tooltip>
+      </Polygon>
+    </MapContainer>
+  )}
+  </div>
+  )
+}
+>>>>>>> a44273de (logo avec nos têtes)
 
       </MapContainer> 
 
