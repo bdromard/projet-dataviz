@@ -44,9 +44,9 @@ const Clock = () => {
     // console.log(time);
     
     return (
-        <div class="Header"> 
+        <div class="Heure"> 
             
-            <h1>On est le {formatDate()}</h1>
+            <h1>{formatDate()}</h1>
             <h2>Il est {currentTime}</h2>
 
         </div>
