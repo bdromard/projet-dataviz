@@ -1,25 +1,18 @@
 import React, { useEffect } from "react";
 import './Header.css';
-<<<<<<< HEAD
-=======
 import Clock from '../Clock/Clock';
 
 
  function Header(){
->>>>>>> a44273de (logo avec nos têtes)
 
 
-function Header(){
+return (
+  <> <section className='Header'>
 
-    let time = Date.now()
-    console.log(time)
+  <div className='Titre'>
+    <p> Paris<br/>
+        Respire</p>
 
-<<<<<<< HEAD
-    return (
-        <div className='header-container'>
-          <p>ceci est un header</p>
-        </div>
-=======
         <img src="https://i.postimg.cc/8zBgBpYm/Logo.png" alt="Logo" className='logo' /> 
 
 
@@ -35,12 +28,3 @@ function Header(){
  }
 
  export default Header
->>>>>>> a44273de (logo avec nos têtes)
-
-        
-      )
-    
-      
-}
-
-export default Header ; 
