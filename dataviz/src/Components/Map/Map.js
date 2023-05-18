@@ -1,121 +1,139 @@
-<<<<<<< HEAD
-import React from "react";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-=======
-
+// Importation des différentes librairies utilisées pour le rendu de la carte : React, Leaflet, Axios.
 
 import React, { useEffect, useState } from "react";
-import { MapContainer, Marker, Popup, Polygon, TileLayer } from "react-leaflet";
->>>>>>> e2716416 (sauvegarde avec dessin de l'espace vert, LET'S FUCKING GO)
+import { MapContainer, Marker, Popup, Polygon, TileLayer, Tooltip } from "react-leaflet";
 import { Icon } from "leaflet";
-<<<<<<< HEAD
-<<<<<<< HEAD
-import "./Map.css"
-
-
-export default function CreateMap() {
-    return <MapContainer center={[48.8738857, 2.3566908]} zoom={12}>
-        <TileLayer    
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"    
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'/>
-        
-    </MapContainer>
-} 
-=======
-=======
->>>>>>> 00adab87 (sauvegarde Map.js avec URL API deuxième tentative)
 import "./Map.css";
-import axios from "axios"; 
-// import espacesData from '/Users/malena/ada_groups/Dataviz/projet-dataviz/dataviz/src/Assets/espaces_verts.json' ; 
+import axios from "axios";
 
+// Constante de la position d'Ada Tech School pour le zoom sur la carte.
 
-function Map() {
-<<<<<<< HEAD
+const adaPosition = [48.87389115024882, 2.3588821526197985];
 
-<<<<<<< HEAD
-//   const getData = async () => {
-//     axios.get('https://opendata.paris.fr/api/v2/catalog/datasets/espaces_verts/') 
+// Définition de couleurs pour le dessin des polygones représentant les espaces verts du 75010.
 
-// }
+const redOptions = { color: 'red' };
+const fillBlueOptions = { fillColor: 'blue' };
+const purpleOptions = { color: 'purple' };
 
-  const getData = async () => {
-    await axios.get('https://opendata.paris.fr/api/v2/catalog/datasets/espaces_verts/records?refine=adresse_codepostal:75010&select=geom') 
-
+// Fonction pour obtenir un code couleur HEX aléatoire.
+function getRandomColor() 
+{
+    let letters = '0123456789ABCDEF'.split('');
+    let color = '#';
+    for (var i = 0; i < 6; i++ ) 
+    {
+       color += letters[Math.round(Math.random() * 15)];
+    }
+return color;
 }
+// Création d'un dictionnaire avec couleur aléatoire pour pouvoir être appelé dans les options du polygone à dessiner sur la
+// carte. 
+
+let randomColorOptions = { color: getRandomColor() };
+
+// Couleur de test : code HEX fonctionne.
+let testColor = {color: '#05D27C'}
 
 
-    return (
-      
-=======
->>>>>>> 4cb78539 (on est pas loin de la solution pour afficher un pin avec les coordonnées d'un parc)
-  
-//   axios.get('https://opendata.paris.fr/api/v2/catalog/datasets/espaces_verts/records?refine=adresse_codepostal:75010&select=geom')
-//   .then(resp => {
 
-<<<<<<< HEAD
-        {/* {getData(espaces => ( */}
-          <Marker 
-          position={[getData.geom.geometry.coordinates[0]]}>
-=======
-//     console.log(resp.data);
-// });
 
-React.useEffect(() => {
-  async function fetchData() {
-    const resp = await axios.get(
-      `https://opendata.paris.fr/api/v2/catalog/datasets/espaces_verts/records?refine=adresse_codepostal:75010&refine=nsq_espace_vert:10297`
-    )
-    .then((resp) => {
-      const positionR = [resp.data.records[0].record.fields.geom.geometry.coordinates[0][0][1],
-      resp.data.records[0].record.fields.geom.geometry.coordinates[0][0][0]];
-      console.log(positionR);
-      <MapContainer center={[48.87, 2.35]} zoom={12.2}>
-       <TileLayer
-=======
+// Function Map pour le rendu de la map.
+function Map() {
+
+    //Définition d'une constante pour la position à utiliser pour le dessin des espaces verts ; utilisation de useState.
+  const [position, setPosition] = useState([]);
+
+  // const [colorToSet, setColor] = useState({ color : `${}`});
+
+    //Fonction asynchrone pour la récupération des données de la mairie de Paris.
   React.useEffect(() => {
     async function fetchData() {
+
+        // Réponse par Axios pour recevoir les données des espaces verts du 75010.
       const resp = await axios.get(
-        `https://opendata.paris.fr/api/v2/catalog/datasets/espaces_verts/records?refine=adresse_codepostal:75010`
+        `https://opendata.paris.fr/api/v2/catalog/datasets/espaces_verts/records?refine=adresse_codepostal:75010&limit=68`
       );
-      const positionR = [
-        resp.data.records[0].record.fields.geom.geometry.coordinates[0][0][1],
-        resp.data.records[0].record.fields.geom.geometry.coordinates[0][0][0],
-      ];
-      const records = resp.data.records
-      records.forEach(record => {
-        console.log(record)
-        const polygon = resp.data.records[0].record.fields.geom.geometry.coordinates
     
-      const bigTableau = []
-      const polygonReversed = []
-      for(let i=0 ; i < polygon.length ; i++){
-        for(let j=0 ; j < polygon[i].length ; j++){
-            polygonReversed.push(polygon[i][j].reverse())
-            }
+     
+      const records = resp.data.records
+      
+        // Constitution d'un tableau, qui recevra d'autres tableaux contenants les coordonnées de l'API de la mairie
+        // de Paris. On doit invertir les données de l'API pour chaque tableau, reçues en latitude/longitude ; Leaflet
+        // a besoin de données en longitude/latitude.
+
+        // For loop qui parcourt les résultats de la requête et rassemble les coordonnées de chaque
+        // espace vert dans un tableau (intermediateArrayCoordinates)
+        let intermediateArrayCoordinates = []
+        
+        for (let i = 0; i < records.length ; i++){
+        const polygon = resp.data.records[i].record.fields.geom.geometry.coordinates
+        for(let j=0 ; j < polygon.length ; j++){
+         intermediateArrayCoordinates.push(polygon)
+        } 
       }
-      bigTableau.push(polygonReversed)
-      setPosition(bigTableau);
-      });
+
+      // Code pour gérer le cas où l'on reçoit les coordonnées en longitude / latitude :
+      
+      // Création de tableaux vides pour stocker les données et émuler la structure de données attendue
+      // par Leaflet.
+
+      // let finalPolyArray = [];
+      // let intermediatePolyArray = [];
+      // let firstPolyArray = [];
+ 
+
+      
+      // Ensemble de loops forEach pour parcourir la structure de données et invertir les coordonnées.
+      // En même temps, appel de la fonction get_random_color() pour générer une couleur aléatoire
+      // par polygone à dessiner.
+
+      intermediateArrayCoordinates.forEach(array => {
+        array.forEach(anotherArray => {
+          anotherArray.forEach(coordinate =>{
+            coordinate.reverse()
+          })
+        })
+    })
+
+    console.log(intermediateArrayCoordinates)
+    
+
+    // For loop finale qui parcourt de nouveau les résultats de la requête, puis push dans le tableau final.
+    
+    // intermediatePolyArray.forEach(array =>{
+    //   array.forEach(yetAnotherArray => {
+    //   let valueToPush = firstPolyArray.splice(0, yetAnotherArray.length)
+    //   finalPolyArray.push(valueToPush)
+    // })
+    // })
+
+    // Tableau à utiliser si besoin d'inverser les coordonnées : 
+    // setPosition(finalPolyArray)
+        
+    // colorArray.forEach(element => {
+    //   let colorToUse = colorArray[element]
+    //   setColor(colorToUse)
+    // })
+      setPosition(intermediateArrayCoordinates)
       
     }
     fetchData();
   }, []);
   return (
+    // Rendu de la map sur la page et dessin du polygone sur la carte.
     <div>
     {position &&(
-    <MapContainer center={[48.87, 2.35]} zoom={12.2}>
+    <MapContainer center={adaPosition} zoom={16}>
       <TileLayer
->>>>>>> e2716416 (sauvegarde avec dessin de l'espace vert, LET'S FUCKING GO)
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
-
-      <Marker
-      position = {positionR
-      }>
+      <Marker position={adaPosition}>
+        <Popup>
+          ADA TECH SCHOOL
+        </Popup>
       </Marker>
-<<<<<<< HEAD
-=======
       <Polygon pathOptions={randomColorOptions} positions={position}>
       <Tooltip sticky>Espace vert du Xème arrondissement</Tooltip>
       </Polygon>
@@ -124,53 +142,6 @@ React.useEffect(() => {
   </div>
   )
 }
->>>>>>> a44273de (logo avec nos têtes)
 
-      </MapContainer> 
+export default Map;
 
-  })
->>>>>>> 4cb78539 (on est pas loin de la solution pour afficher un pin avec les coordonnées d'un parc)
-
-
-    // try {
-    //   const resp = await axios.get(
-    //     `https://opendata.paris.fr/api/v2/catalog/datasets/espaces_verts/records?refine=adresse_codepostal:75010&refine=nsq_espace_vert:10297`
-    //   );
-    //   const positionR = [resp.data.records[0].record.fields.geom.geometry.coordinates[0][0][1],
-    //   resp.data.records[0].record.fields.geom.geometry.coordinates[0][0][0]];
-    //   // console.log(resp.data.records[0].record.fields.geom.geometry.coordinates[0][0]);
-        
-    //   return (
-       
-    //   <MapContainer center={[48.87, 2.35]} zoom={12.2}>
-    //    <TileLayer
-    //     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    //     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    //   />
-
-    //   <Marker
-    //   position = {positionR
-    //   }>
-    //   </Marker>
-
-    //   </MapContainer> )
-
-    // }
-    
-    // catch(err) {
-    //   console.log(err);
-    // }
-
-  
-  }fetchData()
-})}
-  
-
-
-    export default Map ; 
-<<<<<<< HEAD
->>>>>>> 5db850b4 (début de l'affichage map)
-=======
-
-    // URL API Open Data Paris pour les espaces verts du 75010 : https://opendata.paris.fr/api/v2/catalog/datasets/espaces_verts/records?refine=adresse_codepostal:75010
->>>>>>> 00adab87 (sauvegarde Map.js avec URL API deuxième tentative)
