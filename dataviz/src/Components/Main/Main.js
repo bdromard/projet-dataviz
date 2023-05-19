@@ -37,7 +37,7 @@ function Main (){
   function setColours() {
     const now = new Date();
     // const hour = now.getHours();
-    const hour = 20;
+    const hour = 10;
     // const min = now.getMinutes();
     // const sec = now.getSeconds();  
     let first = document.getElementById("main")
